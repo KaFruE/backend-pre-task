@@ -20,7 +20,11 @@ MIDDLEWARE += [
 # # 작업 주의사항 : sqlite가 아닌 MySQL 설정으로 변경해 주세요
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'prod',
+        'USER': 'root',
+        'PASSWORD': '6442',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
