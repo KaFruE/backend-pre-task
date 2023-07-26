@@ -5,7 +5,7 @@ DEBUG = False
 
 ALLOWED_HOSTS += []
 
-WSGI_APPLICATION = 'config.wsgi.prod.application'
+WSGI_APPLICATION = 'conf.wsgi.prod.application'
 
 INSTALLED_APPS += [
 ]

@@ -9,7 +9,7 @@ INTERNAL_IPS = [
 
 ALLOWED_HOSTS += []
 
-WSGI_APPLICATION = 'config.wsgi.dev.application'
+WSGI_APPLICATION = 'conf.wsgi.dev.application'
 
 INSTALLED_APPS += [
     'debug_toolbar',
