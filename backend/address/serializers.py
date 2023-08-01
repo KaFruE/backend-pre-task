@@ -4,6 +4,7 @@ from .models import AddressBook, Label
 from rest_framework import serializers
 from django.forms.models import model_to_dict
 
+
 class AddressBookSerializer(serializers.ModelSerializer):
     company_detail = serializers.SerializerMethodField('get_company_detail')
     labels = serializers.SlugRelatedField(many=True, queryset=Label.objects.all(), slug_field='name')
@@ -23,7 +24,8 @@ class AddressBookInputSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = AddressBook
-        fields = ['profile', 'name', 'email', 'phone', 'company', 'position', 'memo', 'address', 'birthday', 'website', 'labels', 'new_labels']
+        fields = ['profile', 'name', 'email', 'phone', 'company', 'position', 'memo', 'address', 'birthday', 'website',
+                  'labels', 'new_labels']
 
     @transaction.atomic(using='default')
     def validate(self, data):
@@ -75,3 +77,12 @@ class AddressBookInputSerializer(serializers.ModelSerializer):
         address_dict['labels'] = label_list
 
         return address_dict
+
+
+class AddressBookDetailSerializer(serializers.ModelSerializer):
+    labels = serializers.SlugRelatedField(many=True, queryset=Label.objects.all(), slug_field='name')
+
+    class Meta:
+        model = AddressBook
+        fields = ['profile', 'name', 'email', 'phone', 'company', 'position', 'memo', 'address', 'birthday', 'website',
+                  'labels']
