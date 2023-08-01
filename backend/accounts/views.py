@@ -12,14 +12,38 @@ from .serializers import (
     UserSigninSerializer
 )
 
+
 class UserSignupView(CreateAPIView):
+    """
+        API 예시
+        POST localhost:8000/api/users/signup/
+        {
+            "email": "dwyug@gmail.com",
+            "first_name": "dongwan",
+            "last_name": "yug",
+            "user_name": "dongwan yug",
+            "password": "qlalfqjsgh!",
+            "phone": "010-1234-6442",
+            "gender": "MA",
+            "birth_day": "1995-03-06"
+        }
+    """
     permission_classes = [AllowAny]
     serializer_class = UserSignupSerializer
+
 
 class UserSigninView(ObtainAuthToken):
     permission_classes = [AllowAny]
     serializer_class = UserSigninSerializer
 
+    """
+        API 예시
+        POST localhost:8000/api/users/login/
+        {
+            "email" : "dwyug@gmail.com",
+            "password" : "qlalfqjsgh!"
+        }
+    """
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -28,10 +52,15 @@ class UserSigninView(ObtainAuthToken):
         token, _ = Token.objects.get_or_create(user=user)
         return Response({'token': token.key})
 
+
 class UserSignoutView(GenericAPIView):
     permission_classes = [IsAuthenticated]
     authentication_classes = [TokenAuthentication]
 
+    """
+        API 예시
+        POST localhost:8000/api/users/logout/
+    """
     def post(self, request):
         try:
             request.user.auth_token.delete()

@@ -26,6 +26,7 @@ class AddressBook(TempModel):
     def __str__(self):
         return self.name
 
+
 class Label(TempModel):
     name = models.CharField(max_length=50, verbose_name='라벨 이름')
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='사용자')
