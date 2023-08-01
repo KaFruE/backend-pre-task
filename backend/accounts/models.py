@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser, PermissionsMixin, UserManager  # AbstractUser 호출
 from django.core.validators import RegexValidator
 
+
 class UserManager(BaseUserManager):
     use_in_migrations = True
 
