@@ -6,6 +6,7 @@ from django.contrib.auth.models import update_last_login
 
 User = get_user_model()
 
+
 class UserSignupSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -16,6 +17,7 @@ class UserSignupSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data)
         return user
+
 
 class UserSigninSerializer(serializers.Serializer):
     email = serializers.EmailField()
