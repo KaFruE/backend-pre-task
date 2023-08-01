@@ -4,6 +4,7 @@ from core.models import TempModel
 from accounts.models import User
 
 
+# TODO : DB INDEX 처리 필요
 class AddressBook(TempModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='사용자')
     profile = models.URLField(null= True, verbose_name='프로필 URL')
